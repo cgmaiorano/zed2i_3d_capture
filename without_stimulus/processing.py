@@ -40,8 +40,20 @@ def body_tracking(zed):
     data = np.array(np.zeros((1,114)))
     
     # Start body tracking
-    print("Press 'esc' when done with data collection, press 'q' to quit the program.")
-    while key != 113:
+    print("Press 'q' to quit, 'd' to break the loop gracefully.")
+    
+    while True:  # Infinite loop
+
+        key = cv2.waitKey(1) & 0xFF  # Non-blocking key press check
+        
+        if key == ord('q'):  # If 'q' is pressed, break the loop
+            print("Quitting...")
+            break
+        
+        if key == ord('d'):  # Break the loop gracefully if 'd' is pressed
+            print("You pressed 'd', motion tracking is done.")
+            break  # Exit the loop but continue with the rest of the function
+
         # Grab a frame
         if zed.grab() == sl.ERROR_CODE.SUCCESS:
 
@@ -83,10 +95,6 @@ def body_tracking(zed):
             tracking_viewer.render_2D(image_left_ocv,image_scale, bodies.body_list, body_param.enable_tracking, body_param.body_format)
             cv2.imshow("ZED | 2D View", image_left_ocv)
             cv2.moveWindow("ZED | 2D View", 100, 100)
-            key = cv2.waitKey(key_wait)
-            if key == 27: # for 'q' key
-                    print("Exiting...")
-                    break
 
         # Zed connection failed
         elif zed.grab() != sl.ERROR_CODE.SUCCESS:
@@ -99,6 +107,9 @@ def body_tracking(zed):
     zed.close()
     cv2.destroyAllWindows()
 
+    if key == ord('q'):
+        return None
+    
     # format the data
     ordered_df = formatting.format_data(data, parts, x_HEAD, y_HEAD, z_HEAD, frames, timestamps)
 

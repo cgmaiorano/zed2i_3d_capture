@@ -45,7 +45,21 @@ def body_tracking(sharedstate):
 
     sharedstate.wait_for_thread.wait()
 
-    while not sharedstate.stop_event.is_set():
+    # while not sharedstate.stop_event.is_set():
+    while True: # Infinite loop, will break manually or through stop event
+        # Check if stop event is set or quit is triggered by keypress
+        if sharedstate.stop_event.is_set():
+            print("Stop event triggered, exiting loop...")
+            break
+        
+        key = cv2.waitKey(1) & 0xFF  # Non-blocking key press check
+        
+        if key == ord('q'):  # If 'q' is pressed, break the loop
+            print("Quitting...")
+            sharedstate.quit = True
+            sharedstate.stop_event.set()
+            break
+
         # Grab a frame
         if sharedstate.zed.grab() == sl.ERROR_CODE.SUCCESS:
 
@@ -87,11 +101,7 @@ def body_tracking(sharedstate):
             tracking_viewer.render_2D(image_left_ocv,image_scale, bodies.body_list, body_param.enable_tracking, body_param.body_format)
             cv2.imshow("ZED | 2D View", image_left_ocv)
             cv2.moveWindow("ZED | 2D View", 100, 100)
-            key = cv2.waitKey(key_wait)
 
-            if key == 27: # for 'q' key
-                    print("Quitting...")
-                    break
             
         # Zed connection failed
         elif sharedstate.zed.grab() != sl.ERROR_CODE.SUCCESS:
@@ -103,6 +113,8 @@ def body_tracking(sharedstate):
     sharedstate.zed.disable_positional_tracking()
     sharedstate.zed.close()
     cv2.destroyAllWindows()
-
-    # format the data
-    formatting.format_data(data, parts, x_HEAD, y_HEAD, z_HEAD, frames, timestamps, sharedstate)
+    
+    if sharedstate.quit: # if user press 'q' to quit, break out
+        return
+    else: # format the data
+        formatting.format_data(data, parts, x_HEAD, y_HEAD, z_HEAD, frames, timestamps, sharedstate)

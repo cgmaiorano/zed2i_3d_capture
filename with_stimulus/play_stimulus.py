@@ -22,12 +22,12 @@ def play_video(vlc_path, video_path, sharedstate):
             break
 
     if vlc_window:
-        # Get the dimensions of the displays
-        monitors = screeninfo.get_monitors()
-        if len(monitors) > 1:  # Check if there is an extended display
-            extended_monitor = monitors[1]  # Assuming the second monitor is the extended one
-            # Move the window to the extended display
-            vlc_window.move(extended_monitor.x, extended_monitor.y)
+        # # Get the dimensions of the displays
+        # monitors = screeninfo.get_monitors()
+        # if len(monitors) > 1:  # Check if there is an extended display
+        #     extended_monitor = monitors[1]  # Assuming the second monitor is the extended one
+        #     # Move the window to the extended display
+        #     vlc_window.move(extended_monitor.x, extended_monitor.y)
 
         vlc_window.activate()
 

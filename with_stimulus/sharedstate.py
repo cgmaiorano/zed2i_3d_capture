@@ -10,3 +10,4 @@ class SharedState:
         self.df_lock = threading.Lock()
         self.wait_for_thread = threading.Barrier(2)
         self.stop_event = threading.Event()
+        self.quit = False

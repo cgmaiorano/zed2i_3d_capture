@@ -34,6 +34,10 @@ def run(participant_ID, sequence, video):
     video_thread.join()
     body_tracking_thread.join()
 
+    if sharedstate.quit:
+        print(f"Manual Quit... ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} INCOMPLETED.")
+        return 
+    
     # trim data
     formatting.trim_dataframe(sharedstate)
 

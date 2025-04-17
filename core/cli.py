@@ -57,5 +57,3 @@ def main(args: Optional[List[str]] = None):
         without_stimulus_orchestrator.run(arguments.participant, arguments.sequence)
     else:
         with_stimulus_orchestrator.run(arguments.participant, arguments.sequence, arguments.video)
-
-    print(f"ZED Body tracking for Participant: {arguments.participant} Sequence: {arguments.sequence} is complete")
