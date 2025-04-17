@@ -43,7 +43,7 @@ pip install pandas pygetwindow
 
 ## Quick start
 
-### Using zed2i_3d_capture through the command-line:
+### Using zed2i_3d_capture through powershell:
 
 Navigate to the ZED SDK directory:
 
@@ -64,7 +64,7 @@ cd zed2i_3d_capture
 ```
 
 **Special Note**
-    Prior to running the commands below, navigate to `core\with_stimulus_orchestrator.py` and replace vlc_path with the correct path to your vlc player executable.
+    Prior to running the commands below, navigate to `core\with_stimulus_orchestrator.py` and replace `vlc_path` with the correct path to your vlc player executable.
 
 #### Run participant 100 for sequence 1 WITHOUT STIMULUS:
 
