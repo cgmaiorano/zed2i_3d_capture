@@ -6,7 +6,7 @@ A repository containing the necessary code to record motion tracking data from t
 [![LGPL--2.1 License](https://img.shields.io/badge/license-LGPL--2.1-blue.svg)](https://github.com/childmindresearch/mobi-motion-tracking/blob/main/LICENSE)
 [![pages](https://img.shields.io/badge/api-docs-blue)](https://github.com/cgmaiorano/zed2i_3d_capture)
 
-Welcome to `zed2i_3d_capture`, a Python Repository designed for recording 3D motion tracking data from the ZED 2i stereo camera developed by StereoLabs (https://github.com/stereolabs/). This repository performs real time body tracking on a single person and collects the data, saving it to an .xlsx file in the acceptable format for `mobi_motion_tracking`. This repository can be run with or without a live stimulus. 
+Welcome to `zed2i_3d_capture`, a Python Repository designed for recording 3D motion tracking data from the ZED 2i stereo camera developed by StereoLabs (https://github.com/stereolabs/). This repository performs real time body tracking on a single person, collects the data, and saves it to an .xlsx file in the acceptable format for `mobi_motion_tracking`. This repository can be run with or without a live stimulus. 
 
 ## Supported software & devices
 
@@ -65,7 +65,7 @@ cd zed2i_3d_capture
 
 **Special Note**
     Prior to running the commands below, navigate to `core\with_stimulus_orchestrator.py` and replace vlc_path with the correct path to your vlc player executable.
-    
+
 #### Run participant 100 for sequence 1 WITHOUT STIMULUS:
 
 ```sh
