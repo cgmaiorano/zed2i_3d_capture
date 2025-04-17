@@ -1,0 +1,25 @@
+import pyzed.sl as sl
+
+from zed2i_3d_capture.core import zed_parameters
+from zed2i_3d_capture.core import export
+
+from zed2i_3d_capture.without_stimulus import processing
+
+
+def main(participant_ID, sequence):
+
+    print(f"Beginning CAMI Protocol Sequence {sequence}")
+
+    zed = sl.Camera()
+
+    # Create camera object, initialize camera parameters, start recording svo file
+    zed_parameters.initialize_zed_parameters(zed)
+    export.record_svo(participant_ID, sequence, zed)
+
+    # main processing
+    ordered_df = processing.body_tracking(zed)
+
+    # save data
+    export.save_sequence(participant_ID, sequence, ordered_df)
+
+    print(f"ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} is complete")

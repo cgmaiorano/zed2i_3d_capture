@@ -1,0 +1,43 @@
+import threading
+
+from zed2i_3d_capture.core import zed_parameters
+from zed2i_3d_capture.core import export
+
+from zed2i_3d_capture.with_stimulus import formatting
+from zed2i_3d_capture.with_stimulus import processing
+from zed2i_3d_capture.with_stimulus import play_stimulus
+
+from zed2i_3d_capture.with_stimulus.sharedstate import SharedState
+
+
+def main(participant_ID, sequence, video):
+
+    print(f"Beginning CAMI Protocol Sequence {sequence}")
+
+    sharedstate = SharedState()
+
+    # Create camera object, initialize camera parameters, start recording svo file
+    zed_parameters.initialize_zed_parameters(sharedstate.zed)
+    export.record_svo(participant_ID, sequence, sharedstate.zed)
+
+    # Path to the VLC player executable
+    vlc_path = r"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
+
+    # Threads
+    body_tracking_thread = threading.Thread(target=processing.body_tracking, args=(sharedstate,))
+    video_thread = threading.Thread(target=play_stimulus.play_video, args=(vlc_path, str(video), sharedstate))
+
+    body_tracking_thread.start()
+    video_thread.start()
+
+    # Wait for the threads to finish
+    video_thread.join()
+    body_tracking_thread.join()
+
+    # trim data
+    formatting.trim_dataframe(sharedstate)
+
+    # save data
+    export.save_sequence(participant_ID, sequence, sharedstate.ordered_df)
+
+    print(f"ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} is complete")
