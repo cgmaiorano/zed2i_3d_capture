@@ -77,3 +77,7 @@ python -m main -p "100" -s "1"
 ```sh
 python -m main -p "100" -s "1" --video "C:\path\to\stimulus\video.avi"
 ```
+
+## Post-Processing
+
+After data collection, saved data can be compared to a "gold standard" through `mobi_motion_tracking` https://github.com/childmindresearch/mobi-motion-tracking. 
