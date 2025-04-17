@@ -1,6 +1,6 @@
 import time
 import subprocess
-import screeninfo
+# import screeninfo
 import os
 import pygetwindow as gw
 from datetime import datetime

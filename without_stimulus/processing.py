@@ -16,7 +16,6 @@ def body_tracking(zed):
     # Create objects filled in the main loop
     bodies = sl.Bodies()
     image = sl.Mat()
-    key_wait = 10
     key = ''
 
     # Create initial list of body part names with coordinates (1, 114)-- to be used as column headers in data_df
