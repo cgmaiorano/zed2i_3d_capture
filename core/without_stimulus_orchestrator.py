@@ -6,7 +6,7 @@ from core import export
 from without_stimulus import processing
 
 
-def main(participant_ID, sequence):
+def run(participant_ID, sequence):
 
     print(f"Beginning CAMI Protocol Sequence {sequence}")
 

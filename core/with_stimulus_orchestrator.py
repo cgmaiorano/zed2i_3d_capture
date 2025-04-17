@@ -10,7 +10,7 @@ from with_stimulus import play_stimulus
 from with_stimulus.sharedstate import SharedState
 
 
-def main(participant_ID, sequence, video):
+def run(participant_ID, sequence, video):
 
     print(f"Beginning CAMI Protocol Sequence {sequence}")
 
