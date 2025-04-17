@@ -3,7 +3,7 @@ import pandas as pd
 
 def record_svo(participant_ID, sequence, zed):
     
-    recording_param = sl.RecordingParameters(f"{participant_ID}_seq{sequence}.svo2", sl.SVO_COMPRESSION_MODE.H264) # Enable recording with the filename specified in argument
+    recording_param = sl.RecordingParameters(f"collected_data/svo/{participant_ID}_seq{sequence}.svo2", sl.SVO_COMPRESSION_MODE.H264) # Enable recording with the filename specified in argument
 
     err = zed.enable_recording(recording_param)
     if err != sl.ERROR_CODE.SUCCESS:
@@ -17,7 +17,7 @@ def record_svo(participant_ID, sequence, zed):
 def save_sequence(participant_ID, sequence, dataframe):
    
     # Specify the file path and sheet name
-    file_path = f'{participant_ID}.xlsx'
+    file_path = f'collected_data/xlsx/{participant_ID}.xlsx'
     sheet_name = f"seq{sequence}"
 
 
