@@ -3,7 +3,7 @@
 import cv2
 import pyzed.sl as sl
 
-from zed2i_3d_capture.viewers import utils
+from viewers import utils
 
 
 def cvt(pt, scale) -> list:

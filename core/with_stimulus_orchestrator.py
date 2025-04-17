@@ -1,13 +1,13 @@
 import threading
 
-from zed2i_3d_capture.core import zed_parameters
-from zed2i_3d_capture.core import export
+from core import zed_parameters
+from core import export
 
-from zed2i_3d_capture.with_stimulus import formatting
-from zed2i_3d_capture.with_stimulus import processing
-from zed2i_3d_capture.with_stimulus import play_stimulus
+from with_stimulus import formatting
+from with_stimulus import processing
+from with_stimulus import play_stimulus
 
-from zed2i_3d_capture.with_stimulus.sharedstate import SharedState
+from with_stimulus.sharedstate import SharedState
 
 
 def main(participant_ID, sequence, video):

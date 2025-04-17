@@ -1,9 +1,9 @@
 import pyzed.sl as sl
 
-from zed2i_3d_capture.core import zed_parameters
-from zed2i_3d_capture.core import export
+from core import zed_parameters
+from core import export
 
-from zed2i_3d_capture.without_stimulus import processing
+from without_stimulus import processing
 
 
 def main(participant_ID, sequence):

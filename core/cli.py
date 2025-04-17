@@ -2,8 +2,8 @@ import argparse
 import pathlib
 from typing import List, Optional
 
-from zed2i_3d_capture.core import with_stimulus_orchestrator
-from zed2i_3d_capture.core import without_stimulus_orchestrator
+from core import with_stimulus_orchestrator
+from core import without_stimulus_orchestrator
 
 def parse_arguments(args: Optional[List[str]]) -> argparse.Namespace:
     """Argument parser for mobi-motion-tracking cli.

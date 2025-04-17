@@ -3,9 +3,9 @@ import pyzed.sl as sl
 import numpy as np
 from datetime import datetime
 
-from zed2i_3d_capture.core import zed_parameters
-from zed2i_3d_capture.with_stimulus import formatting
-from zed2i_3d_capture.viewers import tracking_viewer
+from core import zed_parameters
+from with_stimulus import formatting
+from viewers import tracking_viewer
 
 
 def body_tracking(sharedstate):
