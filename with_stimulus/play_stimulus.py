@@ -24,7 +24,19 @@ def play_video(vlc_path, video_path, sharedstate):
     start_time = datetime.now()
     sharedstate.timing_container["start"] = start_time
 
-    process.wait()
+    # Monitor process and shared stop_event
+    try:
+        while process.poll() is None:  # While VLC is still running
+            if sharedstate.stop_event.is_set():
+                process.terminate()
+                try:
+                    process.wait(timeout=2)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                break
+            time.sleep(0.1)  # avoid tight loop
+    except Exception as e:
+        print(f"Error monitoring VLC process: {e}")
 
     end_time = datetime.now()
     sharedstate.timing_container["end"] = end_time
