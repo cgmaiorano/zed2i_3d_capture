@@ -11,8 +11,7 @@ from with_stimulus.sharedstate import SharedState
 
 
 def run(participant_ID, sequence, video):
-
-    print(f"Beginning CAMI Protocol Sequence {sequence}")
+    print(f"Beginning Sequence {sequence}")
 
     sharedstate = SharedState()
 
@@ -24,8 +23,12 @@ def run(participant_ID, sequence, video):
     vlc_path = r"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
 
     # Threads
-    body_tracking_thread = threading.Thread(target=processing.body_tracking, args=(sharedstate,))
-    video_thread = threading.Thread(target=play_stimulus.play_video, args=(vlc_path, str(video), sharedstate))
+    body_tracking_thread = threading.Thread(
+        target=processing.body_tracking, args=(sharedstate,)
+    )
+    video_thread = threading.Thread(
+        target=play_stimulus.play_video, args=(vlc_path, str(video), sharedstate)
+    )
 
     body_tracking_thread.start()
     video_thread.start()
@@ -35,13 +38,17 @@ def run(participant_ID, sequence, video):
     body_tracking_thread.join()
 
     if sharedstate.quit:
-        print(f"Manual Quit... ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} INCOMPLETED.")
-        return 
-    
+        print(
+            f"Manual Quit... ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} INCOMPLETED."
+        )
+        return
+
     # trim data
     formatting.trim_dataframe(sharedstate)
 
     # save data
     export.save_sequence(participant_ID, sequence, sharedstate.ordered_df)
 
-    print(f"ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} is complete")
+    print(
+        f"ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} is complete"
+    )
