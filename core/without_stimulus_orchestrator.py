@@ -7,8 +7,7 @@ from without_stimulus import processing
 
 
 def run(participant_ID, sequence):
-
-    print(f"Beginning CAMI Protocol Sequence {sequence}")
+    print(f"Beginning Sequence {sequence}")
 
     zed = sl.Camera()
 
@@ -20,8 +19,14 @@ def run(participant_ID, sequence):
     ordered_df = processing.body_tracking(zed)
 
     if ordered_df is None:
-        print(f"Manual Quit... ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} INCOMPLETED.")
-        return 
-    
+        print(
+            f"Manual Quit... ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} INCOMPLETED."
+        )
+        return
+
     # save data
     export.save_sequence(participant_ID, sequence, ordered_df)
+
+    print(
+        f"ZED Body tracking for Participant: {participant_ID} Sequence: {sequence} is complete"
+    )
