@@ -9,6 +9,8 @@ from with_stimulus import play_stimulus
 
 from with_stimulus.sharedstate import SharedState
 
+from settings import VLC_EXE
+
 
 def run(participant_ID, sequence, video):
     print(f"Beginning Sequence {sequence}")
@@ -20,7 +22,7 @@ def run(participant_ID, sequence, video):
     export.record_svo(participant_ID, sequence, sharedstate.zed)
 
     # Path to the VLC player executable
-    vlc_path = r"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
+    vlc_path = VLC_EXE
 
     # Threads
     body_tracking_thread = threading.Thread(
