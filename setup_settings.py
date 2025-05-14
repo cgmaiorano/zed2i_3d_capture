@@ -60,14 +60,16 @@ def prompt_from_choices(prompt_text: str, choices: list[str], default: str = "")
 
 
 def write_settings_file(settings_path: pl.Path, config: dict):
-    """Write the collected config to a settings.py file."""
+    """Write the collected config to a settings.py file as plain strings."""
     with open(settings_path, "w") as f:
         f.write("# Auto-generated settings\n\n")
         for key, value in config.items():
-            if isinstance(value, str) and os.path.isabs(value):
-                f.write(f'{key} = r"{value}"\n')
-            else:
+            if isinstance(value, str):
+                # Normalize to forward slashes in case user copied backslashes
+                value = value.replace("\\", "/")
                 f.write(f'{key} = "{value}"\n')
+            else:
+                f.write(f"{key} = {value}\n")
     print(f"✅ Created {settings_path}")
 
 

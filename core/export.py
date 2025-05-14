@@ -6,7 +6,7 @@ from settings import OUTPUT_DIR
 
 
 def record_svo(participant_ID, sequence, zed):
-    output_svo_file = pl.Path(OUTPUT_DIR) / f"svo/{participant_ID}_seq{sequence}.svo2"
+    output_svo_file = OUTPUT_DIR + f"/svo/{participant_ID}_seq{sequence}.svo2"
     recording_param = sl.RecordingParameters(
         output_svo_file, sl.SVO_COMPRESSION_MODE.H265
     )  # Enable recording with the filename specified in argument
@@ -22,7 +22,7 @@ def record_svo(participant_ID, sequence, zed):
 
 def save_sequence(participant_ID, sequence, dataframe):
     # Specify the file path and sheet name
-    file_path = pl.Path(OUTPUT_DIR) / f"xlsx/{participant_ID}.xlsx"
+    file_path = OUTPUT_DIR + f"/xlsx/{participant_ID}.xlsx"
     sheet_name = f"seq{sequence}"
 
     # Try to load the existing file and add a new sheet
