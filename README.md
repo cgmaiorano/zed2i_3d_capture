@@ -101,7 +101,7 @@ cd zed2i_3d_capture
 Run the setup_settings.py file and follow prompts in terminal. All details regarding zed settings can be found in the zed documentation:
 https://www.stereolabs.com/docs/depth-sensing/depth-settings and https://www.stereolabs.com/docs/body-tracking/using-body-tracking
 ```sh
-python -m setup_settings.py
+python setup_settings.py
 ```
 
 ## Run participant 100 for sequence 1 WITHOUT STIMULUS:
