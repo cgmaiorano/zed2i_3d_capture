@@ -12,22 +12,29 @@ DIR_REPO = pl.Path(__file__).resolve().parent
 def prompt_for_path(prompt_text: str, default: str = "") -> str:
     """Prompt for a directory or file path.
 
+    - Strips any wrapping quotes.
     - If it's a directory path, create it if it doesn't exist.
-    - If it's a file path, check that it exists.
+    - If it's a file path, ensure it's absolute and exists.
     """
     while True:
         path_input = input(f"{prompt_text} [{default}]: ").strip() or default
-        abs_path = os.path.abspath(path_input)
 
-        if abs_path.endswith(os.sep) or not os.path.splitext(abs_path)[1]:
-            # Treat as directory
+        # Remove leading/trailing quotes if present
+        path_input = path_input.strip("\"'")
+
+        abs_path = os.path.abspath(path_input)
+        is_dir = abs_path.endswith(os.sep) or not os.path.splitext(abs_path)[1]
+
+        if is_dir:
             try:
                 os.makedirs(abs_path, exist_ok=True)
                 return abs_path
             except Exception as e:
                 print(f"❌ Failed to create/access directory '{abs_path}': {e}")
         else:
-            # Treat as file
+            if not os.path.isabs(path_input):
+                print(f"❌ File path must be absolute and start from the root: '{path_input}'")
+                continue
             if os.path.isfile(abs_path):
                 return abs_path
             else:
