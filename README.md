@@ -45,7 +45,7 @@ The main processing pipeline of the `zed2i_3d_capture` module can be described a
 
 4. Create a virtual environment. Any environment management tool can be used, but the following steps describe setting up a uv venv:
 
-create a virtual environment named zed2i_lsl_venv
+create a virtual environment named zed2i_venv
 ```sh
 uv venv zed2i_venv
 ```
