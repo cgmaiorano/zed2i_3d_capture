@@ -104,13 +104,13 @@ https://www.stereolabs.com/docs/depth-sensing/depth-settings and https://www.ste
 python -m setup_settings.py
 ```
 
-#### Run participant 100 for sequence 1 WITHOUT STIMULUS:
+## Run participant 100 for sequence 1 WITHOUT STIMULUS:
 
 ```sh
 python -m main -p "100" -s "1"
 ```
 
-#### Run participant 100 for sequence 1 WITH STIMULUS:
+## Run participant 100 for sequence 1 WITH STIMULUS:
 
 ```sh
 python -m main -p "100" -s "1" --video "C:\path\to\stimulus\video.avi"
