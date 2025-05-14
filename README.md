@@ -98,12 +98,10 @@ Navigate to root:
 cd zed2i_3d_capture
 ```
 
-**Special Note**
-    
-    Prior to running the commands below: 
-        - create directories to store collected data: `collected_data\xlsx` and `collected_data\svo`
-        - navigate to `core\with_stimulus_orchestrator.py` and replace `vlc_path` with the correct path to your vlc player executable.
-
+Run the setup_settings.py file and follow prompts in terminal:
+```sh
+python -m setup_settings.py
+```
 
 #### Run participant 100 for sequence 1 WITHOUT STIMULUS:
 
