@@ -1,6 +1,5 @@
 import pyzed.sl as sl
 import pandas as pd
-import pathlib as pl
 
 from settings import OUTPUT_DIR
 
