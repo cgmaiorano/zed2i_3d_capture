@@ -24,7 +24,7 @@ The main processing pipeline of the `zed2i_3d_capture` module can be described a
 - **Initiate the camera**: The zed camera will be triggerred to open first in both orchestrators. If the camera cannot be accessed, an error will be thrown. 
 - **Begin body tracking**: Skeletal joints will begin being captured at 30 fps. Both pathways can be manually interrupted by pressing the 'q' key to quit without saving.
     - **Present stimulus**: If a video path is provided, the stimulus will be displayed.
-- **Body tracking ends**: If a stimulus is being displayed, body tracking will automatically complete at the end of the stimulus video. If there is no stimulus, body tracking can be concluded by pressing the 'd' key.
+- **Body tracking ends**: If a stimulus is being displayed, body tracking will automatically complete at the end of the stimulus video. If there is no stimulus, body tracking can be concluded by pressing the 'd' key. Body tracking can also be interrupted by pressing the 'q' key whether there is a stimulus or not.
     - **Trim data**: If a stimulus was played, the body tracking data will automatically by trimmed from both the start and end to be time-synced with the stimulus. If there was no sitmulus, the full data collection session will be returned.
 - **Export data**: The live recording of the participant will be saved as a .svo2 file located in collected_data/svo. Joint data will be saved in an .xlsx file located in collected_data/xlsx.
 
